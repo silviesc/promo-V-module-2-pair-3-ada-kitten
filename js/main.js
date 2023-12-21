@@ -78,12 +78,37 @@ if( kittenOneDesc.includes(descrSearchText)) {
   list.innerHTML='';
   list.innerHTML+= kittenOne;
 } 
-  if( kittenTwoDesc.includes(descrSearchText) ) {
-   list.innerHTML='';
-   list.innerHTML+= kittenTwo;
-  } 
-  if( kittenThreeDesc.includes(descrSearchText) ) {
-    list.innerHTML='';
-    list.innerHTML+= kittenTwo;
+if( kittenTwoDesc.includes(descrSearchText) ) {
+  list.innerHTML='';
+  list.innerHTML+= kittenTwo;
+} 
+if( kittenThreeDesc.includes(descrSearchText) ) {
+  list.innerHTML='';
+  list.innerHTML+= kittenTwo;
+}
+
+const buttonAdd = document.querySelector(".js-btn-add");
+
+buttonAdd.addEventListener('click', (event)=> {
+  const inputDesc = document.querySelector('.js-input-desc');
+  const inputPhoto = document.querySelector('.js-input-photo');
+  const inputName = document.querySelector('.js-input-name');
+  const labelMessageError = document.querySelector('.js-label-error');
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+  console.log(valueName);
+
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo';
   }
-  
+})
+
+const buttonCancel = document.querySelector('.js-btn-cancel');
+buttonCancel.addEventListener('click', (event)=> {
+  const formSection = document.querySelector('.js-new-form');
+  formSection.classList.add('collapsed');
+  // const resetForm = document.querySelector('.js-form-reset');
+  // resetForm.innerHTML = "holahola";
+  // console.log(event.currentTarget);
+})
