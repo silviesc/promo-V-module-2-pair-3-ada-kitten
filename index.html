@@ -26,7 +26,7 @@
       <section class="logo">
         <img class="img" src="./img/favicon.png" alt="Logo de Adacats" />
         <h1>AdaKitten</h1>
-        <nav class="menu-nav">
+        <nav class="menu-nav js-nav">
           <ul class="menu">
             <li class="item">
               <span class="fas fa-plus-circle"> </span>
@@ -48,7 +48,7 @@
           />
           <input class="input js-input-name" type="text" placeholder="Nombre" required />
           <input class="input" type="text" placeholder="Raza" />
-          <input class="input js-input-desc js_in_search_desc" type="text" placeholder="Descripción" value="elegante" />
+          <input class="input js-input-desc " type="text" placeholder="Descripción" value="" />
           <label class="js-label-error"></label>
           <button class="button js-btn-add">Añadir</button>
           <button class="button-cancel js-btn-cancel">Cancelar</button>
@@ -63,7 +63,7 @@
       <section class="search">
         <h2 class="title">Filtrar / Buscar</h2>
         <form class="form">
-          <input class="input" type="text" placeholder="Descripción" />
+          <input class="input js_in_search_desc" type="text" placeholder="Descripción" value="elegante" />
           <input
             class="input"
             type="select"
