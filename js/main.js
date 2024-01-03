@@ -21,7 +21,6 @@ const kittenOneDesc =
   // </li>`;
 
 
-
   const kittenTwoImage = 'https://dev.adalab.es/sphynx-gato.webp';
   const kittenTwoName = 'Fiona';
   const kittenTwoRace = 'Sphynx';
@@ -49,24 +48,24 @@ const mayus2= kittenTwoName.toUpperCase();
   'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 
 const mayus3= kittenThreeName.toUpperCase();
-const kittenThree = `<li class="card">
-<img
-  class="card_img"
-  src= ${kittenThreeImage}
-  alt="maine-coon-cat"
-/>
-<h3 class="card_title"> ${mayus3} </h3>
-<h4 class="card_race">${kittenThreeRace}</h4>
-<p class="card_description">
-${kittenThreeDesc}
-</p>
-</li>`;
+// const kittenThree = `<li class="card">
+// <img
+//   class="card_img"
+//   src= ${kittenThreeImage}
+//   alt="maine-coon-cat"
+// />
+// <h3 class="card_title"> ${mayus3} </h3>
+// <h4 class="card_race">${kittenThreeRace}</h4>
+// <p class="card_description">
+// ${kittenThreeDesc}
+// </p>
+// </li>`;
 
 // list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
-const input_search_desc = document.querySelector('.js_in_search_desc');
+// const input_search_desc = document.querySelector('.js_in_search_desc');
 
-const descrSearchText = input_search_desc.value;
+// const descrSearchText = input_search_desc.value;
 // if( kittenOneDesc.includes(descrSearchText) ) {
 //   kittenOne.classList.remove('hidden');
 // } else {
@@ -138,7 +137,6 @@ const labelMessageError = document.querySelector('.js-label-error');
 const valueDesc = inputDesc.value;
 const valuePhoto = inputPhoto.value;
 const valueName = inputName.value;
-console.log(valueName);
 
 function addNewKitten(event) {
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
@@ -163,6 +161,28 @@ function renderKitten(url, desc, name, race) {
   </li>`;
 }
 
+const kittenOne = renderKitten(kittenOneImage,kittenOneDesc, mayus1, kittenOneRace);
+const kittenTwo = renderKitten(kittenTwoImage,kittenTwoDesc, mayus2, kittenTwoRace);
+const kittenThree = renderKitten(kittenThreeImage,kittenThreeDesc, mayus3, kittenThreeRace);
 
+list.innerHTML= kittenOne + kittenTwo + kittenThree;
 
-list.innerHTML= renderKitten(kittenOneImage,kittenOneDesc, mayus1, kittenOneRace) + renderKitten(kittenTwoImage,kittenTwoDesc, mayus2, kittenTwoRace) + renderKitten(kittenThreeImage,kittenThreeDesc, mayus3, kittenThreeRace);
+//filtrar por descripción - 3 enero
+const buttonSearch = document.querySelector('.js-button-search');
+const input_search_desc = document.querySelector('.js_in_search_desc');
+
+const filterKitten = (event) => {
+  event.preventDefault();
+  list.innerHTML = '';
+  const descrSearchText = input_search_desc.value;
+  if (kittenOneDesc.includes(descrSearchText)) {
+    list.innerHTML += kittenOne;
+  }
+  if (kittenTwoDesc.includes(descrSearchText)) {
+    list.innerHTML += kittenTwo;
+  }
+  if (kittenThreeDesc.includes(descrSearchText)) {
+    list.innerHTML += kittenThree;
+  }
+};
+buttonSearch.addEventListener('click', filterKitten);
