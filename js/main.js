@@ -1,108 +1,40 @@
 'use strict';
 const list = document.querySelector('.js-list');
-const kittenOneImage = 'https://dev.adalab.es/gato-siames.webp';
-const kittenOneName = 'Anastacio';
-const kittenOneRace = 'Siamés';
-const kittenOneDesc =
-  ' Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
+const kittenData_1 = {
+  image: 'https://dev.adalab.es/gato-siames.webp',
+  name: 'Anastacio',
+  desc: ' Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+  race: 'Siamés',
+};
 
-  const mayus1= kittenOneName.toUpperCase();
-  // const kittenOne = `<li class="card">
-  // <article> 
-  // <img
-  //   class="card_img"
-  //   src= "${kittenOneImage}";
-  //   alt="gatito"
-  // />
-  // <h3 class="card_title"> ${mayus1} </h3>
-  // <h4 class="card_race"> ${kittenOneRace} </h4>
-  // <p class="card_description"> ${kittenOneDesc} </p>
-  // </article>
-  // </li>`;
+const kittenData_2 = {
+  image: 'https://dev.adalab.es/sphynx-gato.webp',
+  name: 'Fiona',
+  desc: 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño..hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
+  race: 'Sphynx',
+};
 
 
-  const kittenTwoImage = 'https://dev.adalab.es/sphynx-gato.webp';
-  const kittenTwoName = 'Fiona';
-  const kittenTwoRace = 'Sphynx';
-  const kittenTwoDesc =
-    'Produce fascinación y curiosidad. Exótico, raro, bello, extraño..hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.';
-
-const mayus2= kittenTwoName.toUpperCase();
-// const kittenTwo = `<li class="card">
-// <article> 
-// <img
-//   class="card_img"
-//   src="${kittenTwoImage}"
-//   alt="sphynx-cat"/>
-// <h3 class="card_title">${mayus2} </h3>
-// <h4 class="card_race"> ${kittenTwoRace}</h4>
-// <p class="card_description"> ${kittenTwoDesc} </p>
-// </article>
-// </li>`;
+const kittenData_3 = {
+  image: 'https://dev.adalab.es/maine-coon-cat.webp',
+  name: 'Cielo',
+  desc:   'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
+  race: 'Maine Coon',
+};
 
 
-  const kittenThreeImage = 'https://dev.adalab.es/maine-coon-cat.webp';
-  const kittenThreeName = 'Cielo';
-  const kittenThreeRace = 'Maine Coon';
-  const kittenThreeDesc =
-  'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 
-const mayus3= kittenThreeName.toUpperCase();
-// const kittenThree = `<li class="card">
-// <img
-//   class="card_img"
-//   src= ${kittenThreeImage}
-//   alt="maine-coon-cat"
-// />
-// <h3 class="card_title"> ${mayus3} </h3>
-// <h4 class="card_race">${kittenThreeRace}</h4>
-// <p class="card_description">
-// ${kittenThreeDesc}
-// </p>
-// </li>`;
-
-// list.innerHTML = kittenOne + kittenTwo + kittenThree;
-
-// const input_search_desc = document.querySelector('.js_in_search_desc');
-
-// const descrSearchText = input_search_desc.value;
-// if( kittenOneDesc.includes(descrSearchText) ) {
-//   kittenOne.classList.remove('hidden');
-// } else {
-//   kittenOne.classList.add('hidden');
-// }
-  
-// if( kittenOneDesc.includes(descrSearchText)) {
-//   list.innerHTML='';
-//   list.innerHTML+= kittenOne;
-// } 
-// if( kittenTwoDesc.includes(descrSearchText) ) {
-//   list.innerHTML='';
-//   list.innerHTML+= kittenTwo;
-// } 
-// if( kittenThreeDesc.includes(descrSearchText) ) {
-//   list.innerHTML='';
-//   list.innerHTML+= kittenTwo;
-// }
-
-
+const mayus1= kittenData_1.name.toUpperCase();
+const mayus2= kittenData_2.name.toUpperCase();
+const mayus3= kittenData_3.name.toUpperCase();
 
 const buttonCancel = document.querySelector('.js-btn-cancel');
 const formSection = document.querySelector('.js-new-form');
 
 buttonCancel.addEventListener('click', (event)=> {
   formSection.classList.add('collapsed');
-  // const resetForm = document.querySelector('.js-form-reset');
-  // resetForm.innerHTML = "holahola";
-  // console.log(event.currentTarget);
-})
 
-// function showNewCatForm() {
-//   newForm.classList.remove('collapsed');
-// }
-// function hideNewCatForm() {
-//   newForm.classList.add('collapsed');
-// }
+})
 
 const linkNewFormElement= document.querySelector('.item');
 
@@ -113,8 +45,7 @@ function hideNewCatForm() {
  formSection.classList.add('collapsed');
 }
 
-
- function handleClickNewCatForm(event) {
+function handleClickNewCatForm(event) {
   event.preventDefault();
   if (formSection.classList.contains('collapsed')) {
     return showNewCatForm();
@@ -124,7 +55,6 @@ function hideNewCatForm() {
 }
 
 linkNewFormElement.addEventListener('click', handleClickNewCatForm);
-
 
 
 //modifica el evento para cumplir una función manejadora
@@ -146,43 +76,48 @@ function addNewKitten(event) {
 
 buttonAdd.addEventListener('click', addNewKitten);
 
-function renderKitten(url, desc, name, race) {
-  return `<li class="card">
-  <img
-    class="card_img"
-    src= ${url}
-    alt="maine-coon-cat"
-  />
-  <h3 class="card_title"> ${name} </h3>
-  <h4 class="card_race">${race}</h4>
-  <p class="card_description">
-  ${desc}
-  </p>
-  </li>`;
-}
-
-const kittenOne = renderKitten(kittenOneImage,kittenOneDesc, mayus1, kittenOneRace);
-const kittenTwo = renderKitten(kittenTwoImage,kittenTwoDesc, mayus2, kittenTwoRace);
-const kittenThree = renderKitten(kittenThreeImage,kittenThreeDesc, mayus3, kittenThreeRace);
-
-list.innerHTML= kittenOne + kittenTwo + kittenThree;
 
 //filtrar por descripción - 3 enero
 const buttonSearch = document.querySelector('.js-button-search');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 
-const filterKitten = (event) => {
+function filterKitten (event) {
   event.preventDefault();
   list.innerHTML = '';
   const descrSearchText = input_search_desc.value;
-  if (kittenOneDesc.includes(descrSearchText)) {
-    list.innerHTML += kittenOne;
+  if (kittenData_1.desc.includes(descrSearchText)) {
+    list.innerHTML += kittenData_1;
   }
-  if (kittenTwoDesc.includes(descrSearchText)) {
-    list.innerHTML += kittenTwo;
+  if (kittenData_2.desc.includes(descrSearchText)) {
+    list.innerHTML += kittenData_2;
   }
-  if (kittenThreeDesc.includes(descrSearchText)) {
-    list.innerHTML += kittenThree;
+  if (kittenData_3.desc.includes(descrSearchText)) {
+    list.innerHTML += kittenData_3;
   }
 };
 buttonSearch.addEventListener('click', filterKitten);
+
+//objetos- 04-01-24
+
+
+function renderKitten(kittenData) {
+  const html= `<li class="card">
+  <img
+    class="card_img"
+    src= "${kittenData.image}"
+    alt="maine-coon-cat"
+  />
+  <h3 class="card_title"> ${kittenData.name} </h3>
+  <h4 class="card_race">${kittenData.race}</h4>
+  <p class="card_description">
+  ${kittenData.desc}
+  </p>
+  </li>`;
+return html;
+}
+
+// console.log(kittenData_1);
+// console.log(renderKitten(kittenData_1));
+
+list.innerHTML= renderKitten(kittenData_1) + renderKitten(kittenData_2) + renderKitten(kittenData_3);
+
