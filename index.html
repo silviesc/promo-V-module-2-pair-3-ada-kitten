@@ -37,7 +37,7 @@
     </header>
 
     <main>
-      <section class="new-form js-new-form">
+      <section class="new-form js-new-form collapsed">
         <h2 class="title">¿Agregamos un nuevo gatito a Adalab?</h2>
         <form class="form js-form-reset">
           <input
@@ -45,9 +45,8 @@
             type="text"
             placeholder="Url de la foto"
             name="photo"
-            required
           />
-          <input class="input js-input-name" type="text" placeholder="Nombre" name="name" required />
+          <input class="input js-input-name" type="text" placeholder="Nombre" name="name"/>
           <input class="input" type="text" placeholder="Raza" />
           <input class="input js-input-desc " type="text" placeholder="Descripción" value="" />
           <label class="js-label-error"></label>
@@ -66,14 +65,14 @@
         <form class="form">
           <input class="input js_in_search_desc" type="text" placeholder="Descripción" name="search" required/>
           <input
-            class="input"
+            class="input js_in_search_race"
             type="select"
             name="raza"
             placeholder="Raza"
             id="raza"
             required
           />
-
+          <label class="js-label-error"></label>
           <input class="button js-button-search" type="submit" value="buscar">
         </form>
       </section>

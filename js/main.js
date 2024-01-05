@@ -18,11 +18,11 @@ const kittenData_2 = {
 const kittenData_3 = {
   image: 'https://dev.adalab.es/maine-coon-cat.webp',
   name: 'Cielo',
-  desc:   'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
+  desc: 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
   race: 'Maine Coon',
 };
 
-
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
 const mayus1= kittenData_1.name.toUpperCase();
 const mayus2= kittenData_2.name.toUpperCase();
@@ -31,9 +31,8 @@ const mayus3= kittenData_3.name.toUpperCase();
 const buttonCancel = document.querySelector('.js-btn-cancel');
 const formSection = document.querySelector('.js-new-form');
 
-buttonCancel.addEventListener('click', (event)=> {
+buttonCancel.addEventListener('click', ()=> {
   formSection.classList.add('collapsed');
-
 })
 
 const linkNewFormElement= document.querySelector('.item');
@@ -69,6 +68,7 @@ const valuePhoto = inputPhoto.value;
 const valueName = inputName.value;
 
 function addNewKitten(event) {
+  event.preventDefault();
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
     labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo';
   }
@@ -80,22 +80,31 @@ buttonAdd.addEventListener('click', addNewKitten);
 //filtrar por descripción - 3 enero
 const buttonSearch = document.querySelector('.js-button-search');
 const input_search_desc = document.querySelector('.js_in_search_desc');
+const input_search_race = document.querySelector('.js_in_search_race');
 
 function filterKitten (event) {
   event.preventDefault();
   list.innerHTML = '';
   const descrSearchText = input_search_desc.value;
-  if (kittenData_1.desc.includes(descrSearchText)) {
-    list.innerHTML += kittenData_1;
+  // const descrSearchRace = input_search_race.value; 
+  if (kittenDataList[0].desc.includes(descrSearchText)) {
+    list.innerHTML += renderKitten(kittenDataList[0]);
+    
   }
-  if (kittenData_2.desc.includes(descrSearchText)) {
-    list.innerHTML += kittenData_2;
+   if (kittenDataList[1].desc.includes(descrSearchText)) {
+    list.innerHTML += renderKitten(kittenDataList[1]);
   }
-  if (kittenData_3.desc.includes(descrSearchText)) {
-    list.innerHTML += kittenData_3;
+   if (kittenDataList[2].desc.includes(descrSearchText)) {
+    list.innerHTML += renderKitten(kittenDataList[2]);
   }
+  // if (descrSearchText === '' || descrSearchRace === '' ) {
+  //   labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo';
+  // }
+  //pdte de revisar la validacion del search
 };
 buttonSearch.addEventListener('click', filterKitten);
+
+
 
 //objetos- 04-01-24
 
@@ -116,8 +125,7 @@ function renderKitten(kittenData) {
 return html;
 }
 
-// console.log(kittenData_1);
-// console.log(renderKitten(kittenData_1));
+//arrays 05-01-24
 
-list.innerHTML= renderKitten(kittenData_1) + renderKitten(kittenData_2) + renderKitten(kittenData_3);
+list.innerHTML= renderKitten(kittenDataList[0]) + renderKitten(kittenDataList[1]) + renderKitten(kittenDataList[2]);
 
