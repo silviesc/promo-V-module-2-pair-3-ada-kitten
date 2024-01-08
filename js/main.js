@@ -14,7 +14,6 @@ const kittenData_2 = {
   race: 'Sphynx',
 };
 
-
 const kittenData_3 = {
   image: 'https://dev.adalab.es/maine-coon-cat.webp',
   name: 'Cielo',
@@ -24,24 +23,24 @@ const kittenData_3 = {
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
-const mayus1= kittenData_1.name.toUpperCase();
-const mayus2= kittenData_2.name.toUpperCase();
-const mayus3= kittenData_3.name.toUpperCase();
+const mayus1 = kittenData_1.name.toUpperCase();
+const mayus2 = kittenData_2.name.toUpperCase();
+const mayus3 = kittenData_3.name.toUpperCase();
 
 const buttonCancel = document.querySelector('.js-btn-cancel');
 const formSection = document.querySelector('.js-new-form');
 
-buttonCancel.addEventListener('click', ()=> {
+buttonCancel.addEventListener('click', () => {
   formSection.classList.add('collapsed');
-})
+});
 
-const linkNewFormElement= document.querySelector('.item');
+const linkNewFormElement = document.querySelector('.item');
 
 function showNewCatForm() {
   formSection.classList.remove('collapsed');
 }
 function hideNewCatForm() {
- formSection.classList.add('collapsed');
+  formSection.classList.add('collapsed');
 }
 
 function handleClickNewCatForm(event) {
@@ -49,20 +48,20 @@ function handleClickNewCatForm(event) {
   if (formSection.classList.contains('collapsed')) {
     return showNewCatForm();
   } else {
-    return  hideNewCatForm();
+    return hideNewCatForm();
   }
 }
 
 linkNewFormElement.addEventListener('click', handleClickNewCatForm);
 
-
 //modifica el evento para cumplir una función manejadora
 
-const buttonAdd = document.querySelector(".js-btn-add");
+const buttonAdd = document.querySelector('.js-btn-add');
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const labelMessageError = document.querySelector('.js-label-error');
+const labelMessageErrorSearch = document.querySelector('.js-label-errorSearch');
 const valueDesc = inputDesc.value;
 const valuePhoto = inputPhoto.value;
 const valueName = inputName.value;
@@ -76,41 +75,37 @@ function addNewKitten(event) {
 
 buttonAdd.addEventListener('click', addNewKitten);
 
-
 //filtrar por descripción - 3 enero
 const buttonSearch = document.querySelector('.js-button-search');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const input_search_race = document.querySelector('.js_in_search_race');
 
-function filterKitten (event) {
-  event.preventDefault();
-  list.innerHTML = '';
-  const descrSearchText = input_search_desc.value;
-  // const descrSearchRace = input_search_race.value; 
-  if (kittenDataList[0].desc.includes(descrSearchText)) {
-    list.innerHTML += renderKitten(kittenDataList[0]);
-    
-  }
-   if (kittenDataList[1].desc.includes(descrSearchText)) {
-    list.innerHTML += renderKitten(kittenDataList[1]);
-  }
-   if (kittenDataList[2].desc.includes(descrSearchText)) {
-    list.innerHTML += renderKitten(kittenDataList[2]);
-  }
-  // if (descrSearchText === '' || descrSearchRace === '' ) {
-  //   labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo';
-  // }
-  //pdte de revisar la validacion del search
-};
-buttonSearch.addEventListener('click', filterKitten);
+// function filterKitten (event) {
+//   event.preventDefault();
+//   list.innerHTML = '';
+//   const descrSearchText = input_search_desc.value;
+//   // const descrSearchRace = input_search_race.value;
+//   if (kittenDataList[0].desc.includes(descrSearchText)) {
+//     // list.innerHTML += kittenDataList[0];//esto no funciona porque no puede pintar un objeto sin pasar por la función renderkitten.
+//     list.innerHTML += renderKitten(kittenDataList[0]);
 
-
+//   }
+//    if (kittenDataList[1].desc.includes(descrSearchText)) {
+//     list.innerHTML += renderKitten(kittenDataList[1]);
+//   }
+//    if (kittenDataList[2].desc.includes(descrSearchText)) {
+//     list.innerHTML += renderKitten(kittenDataList[2]);
+//   }
+//   // if (descrSearchText === '' || descrSearchRace === '' ) {
+//   //   labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo';
+//   // }
+//
+// };
 
 //objetos- 04-01-24
 
-
 function renderKitten(kittenData) {
-  const html= `<li class="card">
+  const html = `<li class="card">
   <img
     class="card_img"
     src= "${kittenData.image}"
@@ -122,10 +117,48 @@ function renderKitten(kittenData) {
   ${kittenData.desc}
   </p>
   </li>`;
-return html;
+  return html;
 }
 
 //arrays 05-01-24
 
-list.innerHTML= renderKitten(kittenDataList[0]) + renderKitten(kittenDataList[1]) + renderKitten(kittenDataList[2]);
+// list.innerHTML= renderKitten(kittenDataList[0]) + renderKitten(kittenDataList[1]) + renderKitten(kittenDataList[2]);
+
+//bucles 08-01-24
+
+function renderKittenList(kittenDataList) {
+  list.innerHTML = '';
+  for (let i = 0; i < kittenDataList.length; i++) {
+    list.innerHTML += renderKitten(kittenDataList[i]);
+  }
+  //Completa el código:
+  //Vaciamos el innerHTML del <ul> de la página.
+  //Iteramos sobre el listado de gatitos
+  //Y por cada iteración pintamos un gatito.
+  //utilizando la función renderKitten(kittenItem)
+}
+
+renderKittenList(kittenDataList);
+
+function filterKitten(event) {
+  event.preventDefault();
+  const descrSearchText = input_search_desc.value;
+  const descrSearchRace = input_search_race.value;
+  list.innerHTML = '';
+  if (descrSearchText === '' || descrSearchRace === '') {
+    labelMessageErrorSearch.innerHTML = '¡Uy! parece que has olvidado algo';
+  } else {
+    for (const kittenItem of kittenDataList) {
+      if (
+        kittenItem.desc.includes(descrSearchText) &&
+        kittenItem.race.includes(descrSearchRace)
+      ) {
+        list.innerHTML += renderKitten(kittenItem);
+      }
+    }
+  }
+}
+
+buttonSearch.addEventListener('click', filterKitten);
+//pdte de revisar la validacion del search
 
